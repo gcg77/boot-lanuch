@@ -1,0 +1,375 @@
+= boot lanuch 使用swagger创建API文档
+
+
+[[_overview]]
+== 概览
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 1.0.0
+
+
+=== 联系方式
+[%hardbreaks]
+__名字__ : 郭晨刚
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:8888
+__基础路径__ : /
+
+
+=== 标签
+
+* ajax-response-controller : Ajax Response Controller
+
+
+
+
+[[_paths]]
+== 资源
+
+[[_ajax-response-controller_resource]]
+=== Ajax-response-controller
+Ajax Response Controller
+
+
+[[_addbookusingpost]]
+==== 增加书籍信息
+....
+POST /book
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**bookInfo** +
+__必填__|bookInfo|<<_bookinfo,BookInfo>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_responsebase,ResponseBase>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/book
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "auto" : "string",
+  "date" : "string",
+  "id" : 0,
+  "money" : "string",
+  "read" : {
+    "age" : "string",
+    "name" : "string"
+  },
+  "remark" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : "string",
+  "data" : "object",
+  "isok" : true,
+  "message" : "string"
+}
+----
+
+
+[[_updatebookusingput]]
+==== 更新书籍信息
+....
+PUT /book
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**bookInfo** +
+__必填__|bookInfo|<<_bookinfo,BookInfo>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_responsebase,ResponseBase>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/book
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "auto" : "string",
+  "date" : "string",
+  "id" : 0,
+  "money" : "string",
+  "read" : {
+    "age" : "string",
+    "name" : "string"
+  },
+  "remark" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : "string",
+  "data" : "object",
+  "isok" : true,
+  "message" : "string"
+}
+----
+
+
+[[_deletebookusingdelete]]
+==== 删除书籍信息
+....
+DELETE /book
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**id** +
+__必填__|id|integer (int32)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_responsebase,ResponseBase>>
+|**204**|No Content|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/book
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "id" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : "string",
+  "data" : "object",
+  "isok" : true,
+  "message" : "string"
+}
+----
+
+
+[[_findbookoneusingget]]
+==== 查看书籍信息
+....
+GET /book/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|id|integer (int32)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_responsebase,ResponseBase>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/book/0
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : "string",
+  "data" : "object",
+  "isok" : true,
+  "message" : "string"
+}
+----
+
+
+
+
+[[_definitions]]
+== 定义
+
+[[_bookinfo]]
+=== BookInfo
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**auto** +
+__可选__|**样例** : `"string"`|string
+|**date** +
+__可选__|**样例** : `"string"`|string (date-time)
+|**id** +
+__可选__|**样例** : `0`|integer (int32)
+|**money** +
+__可选__|**样例** : `"string"`|string
+|**read** +
+__可选__|**样例** : `"<<_readinfo>>"`|<<_readinfo,ReadInfo>>
+|**remark** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+[[_readinfo]]
+=== ReadInfo
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**age** +
+__可选__|**样例** : `"string"`|string
+|**name** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+[[_responsebase]]
+=== ResponseBase
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|**样例** : `"string"`|string
+|**data** +
+__可选__|**样例** : `"object"`|object
+|**isok** +
+__可选__|**样例** : `true`|boolean
+|**message** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+
+
+
