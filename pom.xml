@@ -104,7 +104,6 @@
             <artifactId>spring-boot-test</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -115,12 +114,29 @@
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>1.5.3</version>
+                <dependencies>
+                    <!--导出pdf-api文档-->
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>1.5.0-alpha.10.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>1.7.21</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <!--asciidoctor文档位置-->
                     <sourceDirectory>src/main/resources/docs</sourceDirectory>
+                    <!--如果要生成pdf将html的注释了-->
+                    <!--生成pdf位置-->
+                    <outputDirectory>src/main/resources/pdf</outputDirectory>
+                    <backend>pdf</backend>
                     <!--生成html位置-->
-                    <outputDirectory>src/main/resources/html</outputDirectory>
-                    <backend>html</backend>
+<!--                    <outputDirectory>src/main/resources/html</outputDirectory>-->
+<!--                    <backend>html</backend>-->
                     <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>
                         <!-- 导航栏在左-->
