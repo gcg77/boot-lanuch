@@ -2,8 +2,11 @@ package com.boot.bootlanuch.model.family;
 
 import lombok.Data;
 
+import javax.validation.constraints.Min;
+
 @Data
 public class Mother {
     private String[] names;
-    private String age;
+    @Min(18)
+    private Integer age;
 }

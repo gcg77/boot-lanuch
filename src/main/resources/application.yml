@@ -11,12 +11,12 @@ family:
   family-name: family
   father:
     name: father
-    age: 33
+    age: ${random.value}
   mother:
     names:
       - mather1
       - mather2
-    age: 34
+    age: 38
   child:
     firends:
        - hobby: hobby1

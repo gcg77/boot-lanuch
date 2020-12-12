@@ -99,10 +99,20 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-configuration-processor</artifactId>
-        <optional>true</optional>
-    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--数据验证-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -143,8 +153,8 @@
                     <outputDirectory>src/main/resources/pdf</outputDirectory>
                     <backend>pdf</backend>
                     <!--生成html位置-->
-<!--                    <outputDirectory>src/main/resources/html</outputDirectory>-->
-<!--                    <backend>html</backend>-->
+                    <!--                    <outputDirectory>src/main/resources/html</outputDirectory>-->
+                    <!--                    <backend>html</backend>-->
                     <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>
                         <!-- 导航栏在左-->

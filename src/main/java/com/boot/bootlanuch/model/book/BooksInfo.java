@@ -6,7 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -14,6 +19,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class BooksInfo {
+    @Min(2)
+    @NotNull(message = "id不能为空")
     private Integer id;
     private String auto;
     private String money;

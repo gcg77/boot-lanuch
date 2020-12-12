@@ -9,6 +9,7 @@ import com.boot.bootlanuch.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -58,7 +59,7 @@ public class AjaxResponseController {
 
     @ApiOperation(value = "增加书籍信息")
     @PostMapping("/book")
-    public ResponseBase addBook(@RequestBody BooksInfo booksInfo) {
+    public ResponseBase addBook(@RequestBody @Validated BooksInfo booksInfo) {
         log.info("family:" + family.toString());
         log.info("id" + booksInfo.getId());
         return ResponseBase.success(booksInfo);
