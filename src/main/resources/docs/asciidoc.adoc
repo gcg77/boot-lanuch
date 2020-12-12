@@ -47,8 +47,8 @@ POST /book
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Body**|**bookInfo** +
-__必填__|bookInfo|<<_bookinfo,BookInfo>>
+|**Body**|**booksInfo** +
+__必填__|booksInfo|<<_booksinfo,BooksInfo>>
 |===
 
 
@@ -114,6 +114,52 @@ __必填__|bookInfo|<<_bookinfo,BookInfo>>
 ----
 
 
+[[_findbookusingget]]
+==== 查看书籍信息
+....
+GET /book
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_responsebase,ResponseBase>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/book
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : "string",
+  "data" : "object",
+  "isok" : true,
+  "message" : "string"
+}
+----
+
+
 [[_updatebookusingput]]
 ==== 更新书籍信息
 ....
@@ -126,8 +172,8 @@ PUT /book
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |类型|名称|说明|类型
-|**Body**|**bookInfo** +
-__必填__|bookInfo|<<_bookinfo,BookInfo>>
+|**Body**|**booksInfo** +
+__必填__|booksInfo|<<_booksinfo,BooksInfo>>
 |===
 
 
@@ -259,7 +305,7 @@ __必填__|id|integer (int32)
 
 
 [[_findbookoneusingget]]
-==== 查看书籍信息
+==== 根据id查看书籍信息
 ....
 GET /book/{id}
 ....
@@ -319,8 +365,8 @@ __必填__|id|integer (int32)
 [[_definitions]]
 == 定义
 
-[[_bookinfo]]
-=== BookInfo
+[[_booksinfo]]
+=== BooksInfo
 
 [options="header", cols=".^3,.^11,.^4"]
 |===

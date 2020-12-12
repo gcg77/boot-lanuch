@@ -5,3 +5,23 @@ server:
       charset: UTF-8
       force: true
       enabled: true
+
+
+family:
+  family-name: family
+  father:
+    name: father
+    age: 33
+  mother:
+    names:
+      - mather1
+      - mather2
+    age: 34
+  child:
+    firends:
+       - hobby: hobby1
+         sex: F
+       - hobby: hobby2
+         sex: M
+    name: child
+    age: 22

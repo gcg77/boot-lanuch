@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookInfo {
+public class BooksInfo {
     private Integer id;
     private String auto;
     private String money;
@@ -24,3 +24,4 @@ public class BookInfo {
     private ReadInfo read;
 
 }
+
