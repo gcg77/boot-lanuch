@@ -8,4 +8,10 @@
 spring:
   profiles:
     active: dev
+jasypt:
+  encryptor:
+    password: password
+    # 加密算法设置 3.0.0 以后
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
