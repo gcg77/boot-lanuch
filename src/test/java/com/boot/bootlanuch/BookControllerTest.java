@@ -2,13 +2,11 @@ package com.boot.bootlanuch;
 
 import com.boot.bootlanuch.controller.AjaxResponseController;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.junit.Before;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;

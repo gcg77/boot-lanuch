@@ -1,0 +1,9 @@
+#sit(System Integration Test ): 系统集成测试，开发人员自己测试流程是否走通。
+server:
+  port: 2222
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+

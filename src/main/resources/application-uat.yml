@@ -1,0 +1,9 @@
+#uat(User Acceptance Test environment): 用户验收测试环境，用于生产环境下的软件测试者测试使用。
+server:
+  port: 5555
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
