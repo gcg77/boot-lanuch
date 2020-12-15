@@ -27,7 +27,7 @@ public class SwaggerExportTests {
                 .withGeneratedExamples()
                 .withoutInlineSchema()
                 .build();
-        Swagger2MarkupConverter.from(new URL("http://localhost:8888/v2/api-docs"))
+        Swagger2MarkupConverter.from(new URL("http://localhost:1111/v2/api-docs"))
                 .withConfig(config)
                 .build()
                 .toFile(Paths.get("src/main/resources/docs/asciidoc"));
