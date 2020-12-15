@@ -45,7 +45,7 @@ public class DeskTopTest {
     public void UrlToPng() throws FileNotFoundException {
             try {
                 // 文件的路径
-                String src = "D:/agriculture/test.html";
+                String src = "D:/agriculture/asciidoc.html";
                 File file = new File(src);
                 String htmlTemplate = FileUtils.readFileToString(file, "utf-8");
                 HtmlImageGenerator imageGenerator = new HtmlImageGenerator();
