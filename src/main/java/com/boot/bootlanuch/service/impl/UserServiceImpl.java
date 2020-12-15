@@ -8,7 +8,9 @@ import com.boot.bootlanuch.entity.TUserExample;
 import com.boot.bootlanuch.entity.core.TUserOdsCore;
 import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -56,6 +58,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addCoreUser(TUserOdsCore user) {
+        tUserOdsCoreDao.insert(user);
+    }
+    @Transactional
+    @Override
+    public void addCoreAndMasterUser(TUserOdsCore user) {
+        TUserOds userOds=new TUserOds();
+        BeanUtils.copyProperties(user,userOds);
+        tUserMasterOdsDao.insert(userOds);
         tUserOdsCoreDao.insert(user);
     }
 }

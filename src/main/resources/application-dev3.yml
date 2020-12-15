@@ -1,0 +1,30 @@
+#dev （Development environment） ： 开发环境，外部用户无法访问，开发人员使用，版本变动很大。
+server:
+  port: 1113
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+masterdb:
+  uniqueResourceName: master
+  xaDataSourceClassName: com.mysql.cj.jdbc.MysqlXADataSource
+  xaProperties:
+    url: jdbc:mysql://121.36.104.193:3306/boot-lanuch?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    user: root
+    password: 123456
+  exclusiveConnectionMode: true
+  minPoolSize: 3
+  maxPoolSize: 10
+  testQuery: SELECT 1 FROM DUAL
+coredb:
+  uniqueResourceName: core
+  xaDataSourceClassName: com.mysql.cj.jdbc.MysqlXADataSource
+  xaProperties:
+    url: jdbc:mysql://121.36.104.193:3306/boot-lanuch-core?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    user: root
+    password: 123456
+  exclusiveConnectionMode: true
+  minPoolSize: 3
+  maxPoolSize: 10
+  testQuery: SELECT 1 FROM DUAL

@@ -60,4 +60,10 @@ public class UserController {
         userService.addCoreUser(user);
         return ResponseBase.success(user);
     }
+    @ApiOperation(value = "向core和master库添加用戶")
+    @PostMapping("/userCoreAndMaster")
+    public ResponseBase addCoreAndMasterUser(@RequestBody TUserOdsCore user) {
+        userService.addCoreAndMasterUser(user);
+        return ResponseBase.success(user);
+    }
 }

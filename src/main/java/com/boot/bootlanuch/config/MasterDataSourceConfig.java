@@ -7,6 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -19,10 +20,10 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = "com.boot.bootlanuch.dao.master",sqlSessionTemplateRef = "masterSqlSessionTemplate")
 public class MasterDataSourceConfig {
     @Bean(name = "masterDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.master")
+    @ConfigurationProperties(prefix = "masterdb")
     @Primary
     public DataSource masterDataSource(){
-        return DataSourceBuilder.create().build();
+        return new AtomikosDataSourceBean();
     }
     @Bean(name="masterSqlSessionFactory")
     @Primary
@@ -34,12 +35,12 @@ public class MasterDataSourceConfig {
                 .getResources("classpath:mapper/master/*.xml"));
         return bean.getObject();
     }
-    @Bean(name="masterTransactionManager")
+   /* @Bean(name="masterTransactionManager")
     @Primary
     public DataSourceTransactionManager masterTransactionManager(
             @Qualifier("masterDataSource") DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
-    }
+    }*/
     @Bean(name="masterSqlSessionTemplate")
     @Primary
     public SqlSessionTemplate masterSqlSessionTemplate(

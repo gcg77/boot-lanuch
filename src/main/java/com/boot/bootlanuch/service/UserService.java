@@ -15,5 +15,5 @@ public interface UserService {
     public List<TUser> findUsesrByExample(Integer id);
     public void addMasterUser(TUserOds user);
     public void addCoreUser(TUserOdsCore user);
-
+    public void addCoreAndMasterUser(TUserOdsCore user);
 }
