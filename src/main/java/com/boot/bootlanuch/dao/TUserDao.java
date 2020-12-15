@@ -4,8 +4,8 @@ import com.boot.bootlanuch.entity.TUser;
 import com.boot.bootlanuch.entity.TUserExample;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 
 public interface TUserDao {
     long countByExample(TUserExample example);

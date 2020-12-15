@@ -1,0 +1,21 @@
+#dev （Development environment） ： 开发环境，外部用户无法访问，开发人员使用，版本变动很大。
+server:
+  port: 1111
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://121.36.104.193:3306/boot-lanuch?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    core:
+      jdbc-url: jdbc:mysql://121.36.104.193:3306/boot-lanuch-core?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+

@@ -14,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan("com.boot.bootlanuch.dao")
 public class BootlanuchApplication {
     public static void main(String[] args) {
-        System.setProperty("jasypt.encryptor.password","password");
         SpringApplication.run(BootlanuchApplication.class, args);
     }
 

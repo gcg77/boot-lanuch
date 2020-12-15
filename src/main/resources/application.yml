@@ -7,7 +7,7 @@
 #pro（Production environment）：生产环境，面向外部用户的环境，正式环境，连接上互联网即可访问。
 spring:
   profiles:
-    active: dev
+    active: dev2
 jasypt:
   encryptor:
     password: password

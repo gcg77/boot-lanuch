@@ -1,10 +1,11 @@
 package com.boot.bootlanuch.controller;
 
 import com.boot.bootlanuch.entity.TUser;
+import com.boot.bootlanuch.entity.core.TUserOdsCore;
+import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.response.ResponseBase;
 import com.boot.bootlanuch.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -46,5 +47,17 @@ public class UserController {
     public ResponseBase findUsesrByExample(@PathVariable("id") Integer id) {
         List<TUser> userList = userService.findUsesrByExample(id);
         return ResponseBase.success(userList);
+    }
+    @ApiOperation(value = "向master库添加用戶")
+    @PostMapping("/userMaster")
+    public ResponseBase addMasterUser(@RequestBody TUserOds user) {
+        userService.addMasterUser(user);
+        return ResponseBase.success(user);
+    }
+    @ApiOperation(value = "向core库添加用戶")
+    @PostMapping("/userCore")
+    public ResponseBase addCoreUser(@RequestBody TUserOdsCore user) {
+        userService.addCoreUser(user);
+        return ResponseBase.success(user);
     }
 }
