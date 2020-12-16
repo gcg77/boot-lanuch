@@ -8,6 +8,9 @@ import org.springframework.context.annotation.PropertySource;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author admin
+ */
 @Data
 @Configuration
 @PropertySource(value = "classpath:employee.properties",encoding = "utf-8")
@@ -18,7 +21,9 @@ public class Employee {
     private String employeeNameOne;
     @Value("#{${employee.age}}")
     private Map<String,Integer> employeeAge;
-    //@Value("#{${employee.age}.two}")
+    /***
+     * @Value("#{${employee.age}.two}")
+     */
     @Value("#{${employee.age}['two']}")
     private String employeeAgeTwo;
     @Value("#{${employee.age}['five'] ?:11}")

@@ -7,6 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author admin
+ */
 @SpringBootApplication
 @EnableSwagger2
 @ImportResource(locations="classpath:beans.xml")

@@ -19,7 +19,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 
-public class CodeGenerator {
+/**
+ * @author admin
+ */
+public class CodeGeneratorTest {
     @Test
     public void testGenerator() {
         // 代码生成器
@@ -28,12 +31,19 @@ public class CodeGenerator {
         GlobalConfig config = new GlobalConfig();
         // 是否支持AR模式
         String projectPath = System.getProperty("user.dir");
-        config.setActiveRecord(true).setAuthor("gcg") // 作者
-                .setOutputDir(projectPath + "/src/main/java") // 生成路径
-                .setFileOverride(true)// 是否文件覆盖，如果多次
-                .setServiceName("%sService") // 设置生成的service接口名首字母是否为大写
-                .setIdType(IdType.AUTO) // 主键策略
-                .setServiceName("%sService")// 设置生成的service接口的名字的首字母是否为大写
+        config.setActiveRecord(true)
+                // 作者
+                .setAuthor("gcg")
+                // 生成路径
+                .setOutputDir(projectPath + "/src/main/java")
+                // 是否文件覆盖，如果多次
+                .setFileOverride(true)
+                // 设置生成的service接口名首字母是否为大写
+                .setServiceName("%sService")
+                // 主键策略
+                .setIdType(IdType.AUTO)
+                // 设置生成的service接口的名字的首字母是否为大写
+                .setServiceName("%sService")
                 .setBaseResultMap(true).setBaseColumnList(true);
         ag.setGlobalConfig(config);
         // 2. 数据源配置
@@ -44,15 +54,23 @@ public class CodeGenerator {
         ag.setDataSource(dsConfig);
         // 3.策略配置
         StrategyConfig stConfig = new StrategyConfig();
-        stConfig.setCapitalMode(true) // 全局大写命名
-                .setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
-                .setColumnNaming(NamingStrategy.underline_to_camel).setInclude("sys_user") // 生成的表
+        stConfig
+                // 全局大写命名
+                .setCapitalMode(true)
+                // 数据库表映射到实体的命名策略
+                .setNaming(NamingStrategy.underline_to_camel)
+                // 生成的表
+                .setColumnNaming(NamingStrategy.underline_to_camel).setInclude("sys_user")
                 .setEntityLombokModel(true);
-        // .setTablePrefix("tbl_"); // 表前缀
+        // 表前缀
+        // .setTablePrefix("tbl_");
         ag.setStrategy(stConfig);
         // 4.包名策略
         PackageConfig pkConfig = new PackageConfig();
-        pkConfig.setParent("com.boot.bootlanuch")/// 父包名
+
+        pkConfig
+                // 父包名
+                .setParent("com.boot.bootlanuch")
                 .setController("controller")
                 .setEntity("entity")
                 .setService("service")

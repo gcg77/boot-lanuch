@@ -16,6 +16,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+/**
+ * @author gcg
+ */
 @Configuration
 @MapperScan(basePackages = "com.boot.bootlanuch.dao.master",sqlSessionTemplateRef = "masterSqlSessionTemplate")
 public class MasterDataSourceConfig {
@@ -35,12 +38,6 @@ public class MasterDataSourceConfig {
                 .getResources("classpath:mapper/master/*.xml"));
         return bean.getObject();
     }
-   /* @Bean(name="masterTransactionManager")
-    @Primary
-    public DataSourceTransactionManager masterTransactionManager(
-            @Qualifier("masterDataSource") DataSource dataSource){
-        return new DataSourceTransactionManager(dataSource);
-    }*/
     @Bean(name="masterSqlSessionTemplate")
     @Primary
     public SqlSessionTemplate masterSqlSessionTemplate(

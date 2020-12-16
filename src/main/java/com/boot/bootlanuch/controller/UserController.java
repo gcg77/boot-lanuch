@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author gcg
+ */
 @RestController
 public class UserController {
     @Resource
@@ -44,8 +47,8 @@ public class UserController {
     }
     @ApiOperation(value = "根据id查询用户")
     @GetMapping("/user/{id}")
-    public ResponseBase findUsesrByExample(@PathVariable("id") Integer id) {
-        List<TUser> userList = userService.findUsesrByExample(id);
+    public ResponseBase findByExample(@PathVariable("id") Integer id) {
+        List<TUser> userList = userService.findByExample(id);
         return ResponseBase.success(userList);
     }
     @ApiOperation(value = "向master库添加用戶")

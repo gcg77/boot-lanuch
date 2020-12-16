@@ -13,14 +13,27 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
+/**
+ * @author admin
+ */
 @Configuration
 @MapperScan(basePackages = "com.boot.bootlanuch.dao.core",sqlSessionTemplateRef = "coreSqlSessionTemplate")
 public class CoreDataSourceConfig {
     @Bean(name = "coreDataSource")
     @ConfigurationProperties(prefix = "coredb")
+    /**
+     * 创建DataSource
+     */
     public DataSource masterDataSource(){
         return new AtomikosDataSourceBean();
     }
+
+    /**
+     * coreSqlSessionFactory
+     * @param dataSource
+     * @return
+     * @throws Exception
+     */
     @Bean(name="coreSqlSessionFactory")
     public SqlSessionFactory masterSqlSessionFactory(
             @Qualifier("coreDataSource") DataSource dataSource) throws Exception{
@@ -30,11 +43,13 @@ public class CoreDataSourceConfig {
                 .getResources("classpath:mapper/core/*.xml"));
         return bean.getObject();
     }
-/*    @Bean(name="coreTransactionManager")
-    public DataSourceTransactionManager masterTransactionManager(
-            @Qualifier("coreDataSource") DataSource dataSource){
-        return new DataSourceTransactionManager(dataSource);
-    }*/
+
+    /**
+     * coreSqlSessionTemplate
+     * @param sqlSessionFactor
+     * @return
+     * @throws Exception
+     */
     @Bean(name="coreSqlSessionTemplate")
     public SqlSessionTemplate masterSqlSessionTemplate(
             @Qualifier("coreSqlSessionFactory") SqlSessionFactory sqlSessionFactor) throws Exception{

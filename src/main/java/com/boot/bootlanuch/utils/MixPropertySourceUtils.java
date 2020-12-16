@@ -13,11 +13,16 @@ import java.io.IOException;
 import java.util.Properties;
 
 
+/**
+ * @author admin
+ */
 public class MixPropertySourceUtils extends DefaultPropertySourceFactory {
     @Override
     public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException {
         String sourceName = name != null ? name : resource.getResource().getFilename();
-        if (StringUtils.isNotBlank(sourceName) && (sourceName.endsWith(".yml") || sourceName.endsWith(".yaml"))) {
+        String yml=".yml";
+        String yaml=".yaml";
+        if (StringUtils.isNotBlank(sourceName) && (sourceName.endsWith(yml) || sourceName.endsWith(yaml))) {
             Properties propertiesYml = loadYml(resource);
             return new PropertiesPropertySource(sourceName, propertiesYml);
         } else {
@@ -34,8 +39,9 @@ public class MixPropertySourceUtils extends DefaultPropertySourceFactory {
         } catch (IllegalStateException e) {
             // for ignoreResourceNotFound
             Throwable cause = e.getCause();
-            if (cause instanceof FileNotFoundException)
+            if (cause instanceof FileNotFoundException){
                 throw (FileNotFoundException) e.getCause();
+            }
             throw e;
         }
     }

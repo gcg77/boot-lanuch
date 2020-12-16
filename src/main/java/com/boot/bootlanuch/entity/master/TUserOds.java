@@ -3,8 +3,7 @@ package com.boot.bootlanuch.entity.master;
 import java.io.Serializable;
 
 /**
- * t_user_ods
- * @author 
+ * @author t_user_ods
  */
 public class TUserOds implements Serializable {
     private Integer id;

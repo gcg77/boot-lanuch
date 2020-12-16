@@ -13,24 +13,41 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
+/**
+ * @author gcg
+ */
 @Configuration
 @EnableTransactionManagement
-public class XATransactionManageConfig {
-    //user事务
+public class TransactionManageConfig {
+    /**
+     * user事务
+     * @return
+     * @throws Exception
+     */
     @Bean(name="userTransaction")
     public UserTransaction userTransaction() throws Exception{
         UserTransactionImp userTransactionImp=new UserTransactionImp();
         userTransactionImp.setTransactionTimeout(10000);
         return userTransactionImp;
     }
-    //分布式事务
+
+    /**
+     * 分布式事务
+     * @return
+     * @throws Exception
+     */
     @Bean(name="transactionManager")
     public TransactionManager transactionManager() throws Exception{
         UserTransactionManager userTransactionManager=new UserTransactionManager();
         userTransactionManager.setForceShutdown(false);
         return userTransactionManager;
     }
-    //事务管理器
+
+    /**
+     * 事务管理器
+     * @return
+     * @throws Exception
+     */
     @Bean(name="platformTransactionManager")
     @DependsOn({"userTransaction","transactionManager"})
     public PlatformTransactionManager platformTransactionManager() throws Exception{

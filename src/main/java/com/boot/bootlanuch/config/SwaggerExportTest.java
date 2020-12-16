@@ -15,9 +15,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 
+/**
+ * @author gcg
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class SwaggerExportTests {
+public class SwaggerExportTest {
     @Test
     public void generateTest() throws MalformedURLException {
         Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()

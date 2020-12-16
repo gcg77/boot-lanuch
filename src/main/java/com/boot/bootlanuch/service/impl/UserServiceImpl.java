@@ -10,11 +10,15 @@ import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author admin
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Resource
@@ -44,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<TUser> findUsesrByExample(Integer id) {
+    public List<TUser> findByExample(Integer id) {
         TUserExample tUserExample=new TUserExample();
         tUserExample.or().andIdEqualTo(id);
         List<TUser> userList=userDao.selectByExample(tUserExample);
@@ -60,8 +64,8 @@ public class UserServiceImpl implements UserService {
     public void addCoreUser(TUserOdsCore user) {
         tUserOdsCoreDao.insert(user);
     }
-    @Transactional
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addCoreAndMasterUser(TUserOdsCore user) {
         TUserOds userOds=new TUserOds();
         BeanUtils.copyProperties(user,userOds);
