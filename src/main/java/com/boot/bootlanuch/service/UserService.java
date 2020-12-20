@@ -3,6 +3,7 @@ package com.boot.bootlanuch.service;
 import com.boot.bootlanuch.entity.TUser;
 import com.boot.bootlanuch.entity.core.TUserOdsCore;
 import com.boot.bootlanuch.entity.master.TUserOds;
+import com.boot.bootlanuch.entity.master.UserToken;
 
 import java.util.List;
 
@@ -59,4 +60,18 @@ public interface UserService {
      * @param user
      */
     public void addCoreAndMasterUser(TUserOdsCore user);
+
+    /**
+     * 用户登录
+     * @param username
+     * @return
+     */
+    public UserToken userLogin(String username);
+
+    /**
+     * 获取token
+     * @param userid
+     * @return
+     */
+    public String getToken(Integer userid);
 }

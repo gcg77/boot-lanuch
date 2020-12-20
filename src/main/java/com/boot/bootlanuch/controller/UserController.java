@@ -3,6 +3,8 @@ package com.boot.bootlanuch.controller;
 import com.boot.bootlanuch.entity.TUser;
 import com.boot.bootlanuch.entity.core.TUserOdsCore;
 import com.boot.bootlanuch.entity.master.TUserOds;
+import com.boot.bootlanuch.entity.master.UserToken;
+import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.response.ResponseBase;
 import com.boot.bootlanuch.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -68,5 +70,11 @@ public class UserController {
     public ResponseBase addCoreAndMasterUser(@RequestBody TUserOdsCore user) {
         userService.addCoreAndMasterUser(user);
         return ResponseBase.success(user);
+    }
+    @ApiOperation(value = "用户登录")
+    @PostMapping("/userlogin")
+    public ResponseBase userLogin(@RequestParam("username") String username) throws BusinessException {
+            UserToken userToken=userService.userLogin(username);
+            return ResponseBase.success(userToken);
     }
 }
