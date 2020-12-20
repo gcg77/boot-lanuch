@@ -25,8 +25,6 @@ import java.util.List;
 @Slf4j
 public class CustomFilter implements Filter {
     private FilterConfig config;
-    @Resource
-    private UserService userService;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.config = filterConfig;
@@ -36,30 +34,7 @@ public class CustomFilter implements Filter {
     @SneakyThrows
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpresponse = (HttpServletResponse) response;
-        httpRequest.setCharacterEncoding("utf-8");
-        log.info(httpRequest.getRemoteAddr());
-        String userid = httpRequest.getHeader("userid");
-        String token = httpRequest.getHeader("token");
         log.info("doFilter 请求方法之前处理请求");
-        log.info("----------------userid----------------:" + userid);
-        log.info("----------------token----------------:" + token);
-        if (StringUtils.isBlank(userid)) {
-            throw new BusinessException("用户id不能为空");
-        } else {
-            if (StringUtils.isBlank(token)) {
-                throw new BusinessException("用户token不能为空");
-            } else {
-                userService = SpringContextUtil.getBean(UserService.class);
-                String userToken=userService.getToken(Integer.valueOf(userid));
-                log.info("----------------userToken----------------:" + userToken);
-                if (!token.equals(userToken)) {
-                    throw new BusinessException("用户用户token不一致");
-                }
-            }
-
-        }
         chain.doFilter(request, response);
 
 
