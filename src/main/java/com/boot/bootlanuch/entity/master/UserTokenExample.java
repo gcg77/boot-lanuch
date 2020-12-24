@@ -313,6 +313,76 @@ public class UserTokenExample {
             addCriterion("token not between", value1, value2, "token");
             return (Criteria) this;
         }
+
+        public Criteria andFailure_dateIsNull() {
+            addCriterion("failure_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateIsNotNull() {
+            addCriterion("failure_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateEqualTo(String value) {
+            addCriterion("failure_date =", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateNotEqualTo(String value) {
+            addCriterion("failure_date <>", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateGreaterThan(String value) {
+            addCriterion("failure_date >", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateGreaterThanOrEqualTo(String value) {
+            addCriterion("failure_date >=", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateLessThan(String value) {
+            addCriterion("failure_date <", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateLessThanOrEqualTo(String value) {
+            addCriterion("failure_date <=", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateLike(String value) {
+            addCriterion("failure_date like", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateNotLike(String value) {
+            addCriterion("failure_date not like", value, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateIn(List<String> values) {
+            addCriterion("failure_date in", values, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateNotIn(List<String> values) {
+            addCriterion("failure_date not in", values, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateBetween(String value1, String value2) {
+            addCriterion("failure_date between", value1, value2, "failure_date");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailure_dateNotBetween(String value1, String value2) {
+            addCriterion("failure_date not between", value1, value2, "failure_date");
+            return (Criteria) this;
+        }
     }
 
     /**

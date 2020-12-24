@@ -1,5 +1,6 @@
 package com.boot.bootlanuch.config;
 
+import com.boot.bootlanuch.entity.master.UserToken;
 import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.service.UserService;
 import com.boot.bootlanuch.utils.SpringContextUtil;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Administrator
@@ -24,27 +26,24 @@ public class CustomerHandler implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
        log.info("请求前调用");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         request.setCharacterEncoding("utf-8");
-        log.info(request.getRemoteAddr());
-        String userid = request.getHeader("userid");
-        String token = request.getHeader("token");
-        log.info("----------------userid----------------:" + userid);
-        log.info("----------------token----------------:" + token);
-        if (StringUtils.isBlank(userid)) {
-            throw new BusinessException("用户id不能为空");
-        } else {
-            if (StringUtils.isBlank(token)) {
-                throw new BusinessException("用户token不能为空");
-            } else {
-                String userToken=userService.getToken(Integer.valueOf(userid));
-                log.info("----------------userToken----------------:" + userToken);
-                if (!token.equals(userToken)) {
-                    throw new BusinessException("用户用户token不一致");
-                }
-            }
-
+        String url=request.getRequestURI().toString();
+        if(url.contains("/boot-lanuch/userlogin")){
+          return true;
         }
-        return true;
+         String userid = request.getHeader("userid");
+        String token = request.getHeader("token");
+        UserToken userToken=userService.userToken(token);
+        if(userToken!=null){
+            if(df.parse(userToken.getFailure_date()).getTime()<System.currentTimeMillis()){
+                throw new BusinessException("token失效，请重新登录");
+            }
+            if(StringUtils.isNotBlank(userid)&& userid.equals(userToken.getUserid())){
+                return true;
+            }
+        }
+        throw new BusinessException("登录失败，请重新登录");
     }
 
     @Override
@@ -56,4 +55,5 @@ public class CustomerHandler implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         log.info("请求完成后回调方法");
     }
+
 }

@@ -69,9 +69,9 @@ public interface UserService {
     public UserToken userLogin(String username);
 
     /**
-     * 获取token
-     * @param userid
+     * 获取userid
+     * @param token
      * @return
      */
-    public String getToken(Integer userid);
+    public UserToken userToken(String token);
 }

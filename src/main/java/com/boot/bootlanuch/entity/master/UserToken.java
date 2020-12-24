@@ -13,6 +13,8 @@ public class UserToken implements Serializable {
 
     private String token;
 
+    private String failure_date;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -39,6 +41,14 @@ public class UserToken implements Serializable {
         this.token = token;
     }
 
+    public String getFailure_date() {
+        return failure_date;
+    }
+
+    public void setFailure_date(String failure_date) {
+        this.failure_date = failure_date;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -53,7 +63,8 @@ public class UserToken implements Serializable {
         UserToken other = (UserToken) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
-            && (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()));
+            && (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()))
+            && (this.getFailure_date() == null ? other.getFailure_date() == null : this.getFailure_date().equals(other.getFailure_date()));
     }
 
     @Override
@@ -63,6 +74,7 @@ public class UserToken implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
         result = prime * result + ((getToken() == null) ? 0 : getToken().hashCode());
+        result = prime * result + ((getFailure_date() == null) ? 0 : getFailure_date().hashCode());
         return result;
     }
 
@@ -75,6 +87,7 @@ public class UserToken implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", userid=").append(userid);
         sb.append(", token=").append(token);
+        sb.append(", failure_date=").append(failure_date);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

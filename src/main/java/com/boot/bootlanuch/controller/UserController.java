@@ -6,17 +6,21 @@ import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.entity.master.UserToken;
 import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.response.ResponseBase;
+import com.boot.bootlanuch.response.RestResponse;
 import com.boot.bootlanuch.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author gcg
  */
 @RestController
+@RequestMapping("/boot-lanuch")
 public class UserController {
     @Resource
     private UserService userService;
@@ -73,8 +77,8 @@ public class UserController {
     }
     @ApiOperation(value = "用户登录")
     @PostMapping("/userlogin")
-    public ResponseBase userLogin(@RequestParam("username") String username) throws BusinessException {
+    public RestResponse userLogin(@RequestParam("username") String username) throws BusinessException {
             UserToken userToken=userService.userLogin(username);
-            return ResponseBase.success(userToken);
+            return  RestResponse.success().put("date",userToken);
     }
 }

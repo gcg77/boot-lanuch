@@ -11,6 +11,7 @@ import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.entity.master.TUserOdsExample;
 import com.boot.bootlanuch.entity.master.UserToken;
 import com.boot.bootlanuch.entity.master.UserTokenExample;
+import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -19,8 +20,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author admin
@@ -98,6 +99,19 @@ public class UserServiceImpl implements UserService {
         UserToken userToken=new UserToken();
         userToken.setUserid(userId);
         userToken.setToken(UUID.randomUUID().toString().replace("-",""));
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = new GregorianCalendar();
+        Date date = new Date();
+        log.info("系统当前时间      ："+df.format(date));
+        c.setTime(date);
+        c.add(Calendar.SECOND,300);
+        date=c.getTime();
+        log.info("token失效时间："+df.format(date));
+        try {
+            userToken.setFailure_date(df.format(date));
+        }catch (Exception e){
+            throw new BusinessException(e.getMessage());
+        }
         if(userTokens!=null&&userTokens.size()>0){
             userToken.setId(userTokens.get(0).getId());
             userTokenDao.updateByPrimaryKey(userToken);
@@ -108,14 +122,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getToken(Integer userid) {
+    public UserToken userToken(String token) {
         UserTokenExample userTokenExample=new UserTokenExample();
-        userTokenExample.or().andUseridEqualTo(userid);
+        userTokenExample.or().andTokenEqualTo(token);
         List<UserToken> userTokens=userTokenDao.selectByExample(userTokenExample);
-        String token="";
+        UserToken userToken=null;
         if(userTokens!=null&&userTokens.size()>0){
-            token=userTokens.get(0).getToken();
+            userToken=userTokens.get(0);
         }
-        return token;
+        return userToken;
     }
+
 }
