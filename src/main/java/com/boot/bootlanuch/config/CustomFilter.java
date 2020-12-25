@@ -36,8 +36,6 @@ public class CustomFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info("doFilter 请求方法之前处理请求");
         chain.doFilter(request, response);
-
-
         log.info("doFilter 请求方法之后处理响应");
     }
 

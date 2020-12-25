@@ -3,7 +3,6 @@ package com.boot.bootlanuch.config;
 import com.boot.bootlanuch.entity.master.UserToken;
 import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.service.UserService;
-import com.boot.bootlanuch.utils.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -23,23 +22,24 @@ import java.text.SimpleDateFormat;
 public class CustomerHandler implements HandlerInterceptor {
     @Resource
     private UserService userService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-       log.info("请求前调用");
+        log.info("请求前调用");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         request.setCharacterEncoding("utf-8");
-        String url=request.getRequestURI().toString();
-        if(url.contains("/boot-lanuch/userlogin")){
-          return true;
+        String url = request.getRequestURI().toString();
+        if (url.contains("/boot-lanuch/userlogin")) {
+            return true;
         }
-         String userid = request.getHeader("userid");
+        String userid = request.getHeader("userid");
         String token = request.getHeader("token");
-        UserToken userToken=userService.userToken(token);
-        if(userToken!=null){
-            if(df.parse(userToken.getFailure_date()).getTime()<System.currentTimeMillis()){
+        UserToken userToken = userService.userToken(token);
+        if (userToken != null) {
+            if (df.parse(userToken.getFailure_date()).getTime() < System.currentTimeMillis()) {
                 throw new BusinessException("token失效，请重新登录");
             }
-            if(StringUtils.isNotBlank(userid)&& userid.equals(userToken.getUserid())){
+            if (StringUtils.isNotBlank(userid) && userid.equals(String.valueOf(userToken.getUserid()))) {
                 return true;
             }
         }

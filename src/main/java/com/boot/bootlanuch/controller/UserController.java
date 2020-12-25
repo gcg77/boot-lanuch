@@ -20,7 +20,6 @@ import java.util.Map;
  * @author gcg
  */
 @RestController
-@RequestMapping("/boot-lanuch")
 public class UserController {
     @Resource
     private UserService userService;
@@ -59,26 +58,26 @@ public class UserController {
     }
     @ApiOperation(value = "向master库添加用戶")
     @PostMapping("/userMaster")
-    public ResponseBase addMasterUser(@RequestBody TUserOds user) {
+    public RestResponse addMasterUser(@RequestBody TUserOds user) {
         userService.addMasterUser(user);
-        return ResponseBase.success(user);
+        return  RestResponse.success().put("data",user);
     }
     @ApiOperation(value = "向core库添加用戶")
     @PostMapping("/userCore")
-    public ResponseBase addCoreUser(@RequestBody TUserOdsCore user) {
+    public RestResponse addCoreUser(@RequestBody TUserOdsCore user) {
         userService.addCoreUser(user);
-        return ResponseBase.success(user);
+        return  RestResponse.success().put("data",user);
     }
     @ApiOperation(value = "向core和master库添加用戶")
     @PostMapping("/userCoreAndMaster")
-    public ResponseBase addCoreAndMasterUser(@RequestBody TUserOdsCore user) {
+    public RestResponse addCoreAndMasterUser(@RequestBody TUserOdsCore user) {
         userService.addCoreAndMasterUser(user);
-        return ResponseBase.success(user);
+        return  RestResponse.success().put("data",user);
     }
     @ApiOperation(value = "用户登录")
     @PostMapping("/userlogin")
     public RestResponse userLogin(@RequestParam("username") String username) throws BusinessException {
             UserToken userToken=userService.userLogin(username);
-            return  RestResponse.success().put("date",userToken);
+            return  RestResponse.success().put("data",userToken);
     }
 }

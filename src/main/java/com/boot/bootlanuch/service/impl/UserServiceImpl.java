@@ -7,6 +7,7 @@ import com.boot.bootlanuch.dao.master.UserTokenDao;
 import com.boot.bootlanuch.entity.TUser;
 import com.boot.bootlanuch.entity.TUserExample;
 import com.boot.bootlanuch.entity.core.TUserOdsCore;
+import com.boot.bootlanuch.entity.core.TUserOdsCoreExample;
 import com.boot.bootlanuch.entity.master.TUserOds;
 import com.boot.bootlanuch.entity.master.TUserOdsExample;
 import com.boot.bootlanuch.entity.master.UserToken;
@@ -67,11 +68,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addMasterUser(TUserOds user) {
+        TUserOdsExample odsExample=new TUserOdsExample();
+        odsExample.or().andUsernameEqualTo(user.getUsername());
+        List<TUserOds> userOdsList=tUserMasterOdsDao.selectByExample(odsExample);
+        if(userOdsList!=null&&userOdsList.size()>0){
+            throw new BusinessException("用户名已经存在，请检查后重新输入!");
+        }
         tUserMasterOdsDao.insert(user);
     }
 
     @Override
     public void addCoreUser(TUserOdsCore user) {
+        TUserOdsCoreExample odsExample=new TUserOdsCoreExample();
+        odsExample.or().andUsernameEqualTo(user.getUsername());
+        List<TUserOdsCore> userOdsList=tUserOdsCoreDao.selectByExample(odsExample);
+        if(userOdsList!=null&&userOdsList.size()>0){
+            throw new BusinessException("用户名已经存在，请检查后重新输入!");
+        }
         tUserOdsCoreDao.insert(user);
     }
     @Override

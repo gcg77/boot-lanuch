@@ -6,6 +6,7 @@ server:
       charset: UTF-8
       force: true
       enabled: true
+    context-path: /boot-lanuch
 masterdb:
   uniqueResourceName: master
   xaDataSourceClassName: com.mysql.cj.jdbc.MysqlXADataSource
