@@ -4,6 +4,8 @@ import com.boot.bootlanuch.response.ResponseBase;
 import com.boot.bootlanuch.response.RestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,4 +32,10 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(),e);
         return RestResponse.error("系统未知异常，请联系管理员！");
     }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public RestResponse globalValidException(MethodArgumentNotValidException e){
+        FieldError error=e.getBindingResult().getFieldError();
+        return RestResponse.error(error.getDefaultMessage());
+    }
+
 }

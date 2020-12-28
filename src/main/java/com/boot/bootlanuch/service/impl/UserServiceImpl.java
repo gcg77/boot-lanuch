@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
     private TUserOdsCoreDao tUserOdsCoreDao;
     @Resource
     private UserTokenDao userTokenDao;
+
     @Override
     public Integer addUser(TUser user) {
         return userDao.insert(user);
@@ -60,18 +61,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<TUser> findByExample(Integer id) {
-        TUserExample tUserExample=new TUserExample();
+        TUserExample tUserExample = new TUserExample();
         tUserExample.or().andIdEqualTo(id);
-        List<TUser> userList=userDao.selectByExample(tUserExample);
+        List<TUser> userList = userDao.selectByExample(tUserExample);
         return userList;
     }
 
     @Override
     public void addMasterUser(TUserOds user) {
-        TUserOdsExample odsExample=new TUserOdsExample();
+        TUserOdsExample odsExample = new TUserOdsExample();
         odsExample.or().andUsernameEqualTo(user.getUsername());
-        List<TUserOds> userOdsList=tUserMasterOdsDao.selectByExample(odsExample);
-        if(userOdsList!=null&&userOdsList.size()>0){
+        List<TUserOds> userOdsList = tUserMasterOdsDao.selectByExample(odsExample);
+        if (userOdsList != null && userOdsList.size() > 0) {
             throw new BusinessException("用户名已经存在，请检查后重新输入!");
         }
         tUserMasterOdsDao.insert(user);
@@ -79,56 +80,57 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addCoreUser(TUserOdsCore user) {
-        TUserOdsCoreExample odsExample=new TUserOdsCoreExample();
+        TUserOdsCoreExample odsExample = new TUserOdsCoreExample();
         odsExample.or().andUsernameEqualTo(user.getUsername());
-        List<TUserOdsCore> userOdsList=tUserOdsCoreDao.selectByExample(odsExample);
-        if(userOdsList!=null&&userOdsList.size()>0){
+        List<TUserOdsCore> userOdsList = tUserOdsCoreDao.selectByExample(odsExample);
+        if (userOdsList != null && userOdsList.size() > 0) {
             throw new BusinessException("用户名已经存在，请检查后重新输入!");
         }
         tUserOdsCoreDao.insert(user);
     }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void addCoreAndMasterUser(TUserOdsCore user) {
-        TUserOds userOds=new TUserOds();
-        BeanUtils.copyProperties(user,userOds);
+        TUserOds userOds = new TUserOds();
+        BeanUtils.copyProperties(user, userOds);
         tUserMasterOdsDao.insert(userOds);
         tUserOdsCoreDao.insert(user);
     }
 
     @Override
     public UserToken userLogin(String username) {
-        TUserOdsExample tUserExample=new TUserOdsExample();
+        TUserOdsExample tUserExample = new TUserOdsExample();
         tUserExample.or().andUsernameEqualTo(username);
-        List<TUserOds> userList=tUserMasterOdsDao.selectByExample(tUserExample);
-        Integer userId=null;
-        if(userList!=null&&userList.size()>0){
-            userId=userList.get(0).getId();
+        List<TUserOds> userList = tUserMasterOdsDao.selectByExample(tUserExample);
+        Integer userId = null;
+        if (userList != null && userList.size() > 0) {
+            userId = userList.get(0).getId();
         }
-        log.info("id:"+userId);
-        UserTokenExample userTokenExample=new UserTokenExample();
+        log.info("id:" + userId);
+        UserTokenExample userTokenExample = new UserTokenExample();
         userTokenExample.or().andUseridEqualTo(userId);
-        List<UserToken> userTokens=userTokenDao.selectByExample(userTokenExample);
-        UserToken userToken=new UserToken();
+        List<UserToken> userTokens = userTokenDao.selectByExample(userTokenExample);
+        UserToken userToken = new UserToken();
         userToken.setUserid(userId);
-        userToken.setToken(UUID.randomUUID().toString().replace("-",""));
+        userToken.setToken(UUID.randomUUID().toString().replace("-", ""));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar c = new GregorianCalendar();
         Date date = new Date();
-        log.info("系统当前时间      ："+df.format(date));
+        log.info("系统当前时间      ：" + df.format(date));
         c.setTime(date);
-        c.add(Calendar.SECOND,300);
-        date=c.getTime();
-        log.info("token失效时间："+df.format(date));
+        c.add(Calendar.SECOND, 300);
+        date = c.getTime();
+        log.info("token失效时间：" + df.format(date));
         try {
             userToken.setFailure_date(df.format(date));
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        if(userTokens!=null&&userTokens.size()>0){
+        if (userTokens != null && userTokens.size() > 0) {
             userToken.setId(userTokens.get(0).getId());
             userTokenDao.updateByPrimaryKey(userToken);
-        }else{
+        } else {
             userTokenDao.insert(userToken);
         }
         return userToken;
@@ -136,14 +138,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserToken userToken(String token) {
-        UserTokenExample userTokenExample=new UserTokenExample();
+        UserTokenExample userTokenExample = new UserTokenExample();
         userTokenExample.or().andTokenEqualTo(token);
-        List<UserToken> userTokens=userTokenDao.selectByExample(userTokenExample);
-        UserToken userToken=null;
-        if(userTokens!=null&&userTokens.size()>0){
-            userToken=userTokens.get(0);
+        List<UserToken> userTokens = userTokenDao.selectByExample(userTokenExample);
+        UserToken userToken = null;
+        if (userTokens != null && userTokens.size() > 0) {
+            userToken = userTokens.get(0);
         }
         return userToken;
+    }
+
+    @Override
+    public TUserOdsCore findCoreUser(Integer id) {
+
+        return tUserOdsCoreDao.selectByPrimaryKey(id);
     }
 
 }

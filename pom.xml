@@ -177,14 +177,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>
         </dependency>
-<!--        Spring Data REST是基于Spring Data的repository之上，
-        可以把 repository 自动输出为REST资源，
-        目前支持Spring Data JPA、Spring Data MongoDB、Spring Data Neo4j、Spring Data GemFire、
-        Spring Data Cassandra的 repository 自动转换成REST服务。注意是自动-->
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>-->
+        <!--        Spring Data REST是基于Spring Data的repository之上，
+                可以把 repository 自动输出为REST资源，
+                目前支持Spring Data JPA、Spring Data MongoDB、Spring Data Neo4j、Spring Data GemFire、
+                Spring Data Cassandra的 repository 自动转换成REST服务。注意是自动-->
+        <!--        <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-rest</artifactId>
+                </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -225,8 +231,8 @@
                     <outputDirectory>src/main/resources/pdf</outputDirectory>
                     <backend>pdf</backend>
                     <!--生成html位置-->
-<!--                     <outputDirectory>src/main/resources/html</outputDirectory>
-                     <backend>html</backend>-->
+                    <!--                     <outputDirectory>src/main/resources/html</outputDirectory>
+                                         <backend>html</backend>-->
                     <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>
                         <!-- 导航栏在左-->

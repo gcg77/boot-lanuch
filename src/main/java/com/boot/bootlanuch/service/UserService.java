@@ -74,4 +74,10 @@ public interface UserService {
      * @return
      */
     public UserToken userToken(String token);
+    /**
+     * 根据条件查询用户信息
+     * @param id
+     * @return
+     */
+    public TUserOdsCore findCoreUser(Integer id);
 }

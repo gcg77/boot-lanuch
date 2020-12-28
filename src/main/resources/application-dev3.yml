@@ -1,6 +1,11 @@
 #dev （Development environment） ： 开发环境，外部用户无法访问，开发人员使用，版本变动很大。
 server:
   port: 1113
+  httpPort: 80
+  ssl:
+    key-store: src/main/resources/ssl/tomcat.keystore
+    key-store-password: 123456
+    key-store-type: JKS
   servlet:
     encoding:
       charset: UTF-8
