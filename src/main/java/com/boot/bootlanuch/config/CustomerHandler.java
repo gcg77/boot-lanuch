@@ -29,7 +29,7 @@ public class CustomerHandler implements HandlerInterceptor {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         request.setCharacterEncoding("utf-8");
         String url = request.getRequestURI().toString();
-        if (url.contains("/boot-lanuch/userlogin")) {
+        if (url.contains("/boot-lanuch/userlogin")||url.contains("/boot-lanuch/template")) {
             return true;
         }
         String userid = request.getHeader("userid");

@@ -9,7 +9,9 @@ import com.boot.bootlanuch.response.ResponseBase;
 import com.boot.bootlanuch.response.RestResponse;
 import com.boot.bootlanuch.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -21,6 +23,7 @@ import java.util.Map;
  * @author gcg
  */
 @RestController
+@Slf4j
 public class UserController {
     @Resource
     private UserService userService;

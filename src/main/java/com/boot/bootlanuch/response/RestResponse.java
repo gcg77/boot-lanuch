@@ -12,7 +12,6 @@ import java.util.HashMap;
  */
 public class RestResponse extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
-
     public RestResponse() {
         put("code", HttpStatus.OK.value());
         put("message", "success");

@@ -2,6 +2,7 @@ package com.boot.bootlanuch.exception;
 
 import com.boot.bootlanuch.response.RestResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,9 +28,11 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        if(selectedContentType.equalsTypeAndSubtype(MediaType.APPLICATION_JSON)){
-            response.setStatusCode(HttpStatus.valueOf((Integer) ((RestResponse) body).get("code")));
-            log.info("StatusCode:"+((RestResponse) body).get("code"));
+        if (selectedContentType.equalsTypeAndSubtype(MediaType.APPLICATION_JSON)) {
+            if (null != body) {
+                response.setStatusCode(HttpStatus.valueOf((Integer) ((RestResponse) body).get("code")));
+                log.info("StatusCode:" + ((RestResponse) body).get("code"));
+            }
             return body;
         }
         return null;
