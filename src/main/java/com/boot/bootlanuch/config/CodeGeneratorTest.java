@@ -63,7 +63,6 @@ public class CodeGeneratorTest {
                 .setColumnNaming(NamingStrategy.underline_to_camel).setInclude("sys_user")
                 .setEntityLombokModel(true);
         // 表前缀
-        // .setTablePrefix("tbl_");
         ag.setStrategy(stConfig);
         // 4.包名策略
         PackageConfig pkConfig = new PackageConfig();

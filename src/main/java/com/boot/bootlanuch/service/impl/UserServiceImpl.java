@@ -19,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -90,12 +91,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor=BusinessException.class)
     public void addCoreAndMasterUser(TUserOdsCore user) {
-        TUserOds userOds = new TUserOds();
-        BeanUtils.copyProperties(user, userOds);
-        tUserMasterOdsDao.insert(userOds);
-        tUserOdsCoreDao.insert(user);
+            TUserOds userOds = new TUserOds();
+            BeanUtils.copyProperties(user, userOds);
+            tUserMasterOdsDao.insert(userOds);
+            tUserOdsCoreDao.insert(user);
     }
 
     @Override

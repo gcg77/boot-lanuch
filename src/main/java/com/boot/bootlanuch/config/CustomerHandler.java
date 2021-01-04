@@ -22,14 +22,13 @@ import java.text.SimpleDateFormat;
 public class CustomerHandler implements HandlerInterceptor {
     @Resource
     private UserService userService;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("请求前调用");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         request.setCharacterEncoding("utf-8");
         String url = request.getRequestURI().toString();
-        if (url.contains("/boot-lanuch/userlogin")||url.contains("/boot-lanuch/template")) {
+        if (url.contains(StaticConfig.EXCLUDE_URL_LOGIN)||url.contains(StaticConfig.EXCLUDE_URL_TEM)) {
             return true;
         }
         String userid = request.getHeader("userid");
