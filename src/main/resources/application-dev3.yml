@@ -1,7 +1,7 @@
 #dev （Development environment） ： 开发环境，外部用户无法访问，开发人员使用，版本变动很大。
 server:
   port: 1113
-  httpPort: 80
+  httpPort: 8081
   ssl:
     key-store: src/main/resources/ssl/tomcat.keystore
     key-store-password: 123456
@@ -34,3 +34,8 @@ coredb:
   minPoolSize: 3
   maxPoolSize: 10
   testQuery: SELECT 1 FROM DUAL
+spring:
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
