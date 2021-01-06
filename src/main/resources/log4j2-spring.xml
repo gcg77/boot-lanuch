@@ -20,7 +20,7 @@
         </Console>
 
         <!-- 打印出所有的信息，每次大小超过size-->
-        <RollingRandomAccessFile name="infoLog" fileName="${logDir}/${App}-info.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-info-%d{MM-dd-yyyy}-%i.log">
+        <RollingRandomAccessFile name="infoLog" fileName="${logDir}/${App}-info.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-info-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} [%t] %-5level %logger{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <!-- 每 5s 翻滚一次 -->
@@ -37,7 +37,7 @@
             <DefaultRolloverStrategy max="50"/>
         </RollingRandomAccessFile>
         <!-- 打印出warn信息，每次大小超过size -->
-        <RollingRandomAccessFile name="warnLog" fileName="${logDir}/${App}-warn.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-warn-%d{MM-dd-yyyy}-%i.log">
+        <RollingRandomAccessFile name="warnLog" fileName="${logDir}/${App}-warn.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-warn-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} [%t] %-5level %logger{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <!-- 每 5s 翻滚一次 -->
@@ -54,7 +54,7 @@
             <DefaultRolloverStrategy max="50"/>
         </RollingRandomAccessFile>
         <!-- 存储所有error信息 -->
-        <RollingRandomAccessFile name="errorLog" fileName="${logDir}/${App}-error.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-error-%d{MM-dd-yyyy}-%i.log">
+        <RollingRandomAccessFile name="errorLog" fileName="${logDir}/${App}-error.log" filePattern="${logDir}/$${date:yyyy-MM}/${App}-error-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} [%t] %-5level %logger{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <!-- 每 5s 翻滚一次 -->
