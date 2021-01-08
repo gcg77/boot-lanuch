@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 /**
  * @author admin
  */
-@Configuration
+/*@Configuration
 @EnableScheduling
 public class SchedulingConfig implements SchedulingConfigurer {
     @Override
@@ -26,4 +26,4 @@ public class SchedulingConfig implements SchedulingConfigurer {
                 new ThreadPoolExecutor.DiscardOldestPolicy());
         return executor;
     }
-}
+}*/

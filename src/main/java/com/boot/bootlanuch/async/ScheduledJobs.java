@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 @Slf4j
 public class ScheduledJobs {
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    @Scheduled(fixedDelay=2000)
+    @Scheduled(fixedDelay=2000000)
     public void fixedDelayJob() throws InterruptedException{
         log.info("定时任务开始fixedDelay"+sdf.format(new Date()));
         long startTime=System.currentTimeMillis();
@@ -24,7 +24,7 @@ public class ScheduledJobs {
         long endTime=System.currentTimeMillis();
         log.info("定时任务fixedDelay消耗时间："+(endTime-startTime)+"毫秒");
     }
-    @Scheduled(fixedRate=2000)
+    @Scheduled(fixedRate=20000000)
     public void fixedRateJob() throws InterruptedException{
         log.info("定时任务开始fixedRate"+sdf.format(new Date()));
         long startTime=System.currentTimeMillis();
@@ -32,7 +32,7 @@ public class ScheduledJobs {
         long endTime=System.currentTimeMillis();
         log.info("定时任务fixedRate消耗时间："+(endTime-startTime)+"毫秒");
     }
-    @Scheduled(cron="0/1 * * * * ?")
+    @Scheduled(cron="* 0/20 * * * ?")
     public void cronJob() throws InterruptedException{
         log.info("定时任务开始cron"+sdf.format(new Date()));
         long startTime=System.currentTimeMillis();
