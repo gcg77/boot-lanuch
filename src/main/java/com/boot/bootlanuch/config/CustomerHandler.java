@@ -33,6 +33,9 @@ public class CustomerHandler implements HandlerInterceptor {
         }
         String userid = request.getHeader("userid");
         String token = request.getHeader("token");
+        if(StringUtils.isBlank(token)){
+            throw new BusinessException("token不能为空");
+        }
         UserToken userToken = userService.userToken(token);
         if (userToken != null) {
             if (df.parse(userToken.getFailure_date()).getTime() < System.currentTimeMillis()) {

@@ -1,5 +1,6 @@
 package com.boot.bootlanuch.service.impl;
 
+import com.boot.bootlanuch.config.StaticConfig;
 import com.boot.bootlanuch.dao.TUserDao;
 import com.boot.bootlanuch.dao.core.TUserOdsCoreDao;
 import com.boot.bootlanuch.dao.master.TUserOdsDao;
@@ -16,10 +17,12 @@ import com.boot.bootlanuch.exception.BusinessException;
 import com.boot.bootlanuch.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -98,7 +101,6 @@ public class UserServiceImpl implements UserService {
             tUserMasterOdsDao.insert(userOds);
             tUserOdsCoreDao.insert(user);
     }
-
     @Override
     public UserToken userLogin(String username) {
         TUserOdsExample tUserExample = new TUserOdsExample();
@@ -150,9 +152,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable (value = StaticConfig.CACHE_USER_VALUE, key="#id")
     public TUserOdsCore findCoreUser(Integer id) {
-
         return tUserOdsCoreDao.selectByPrimaryKey(id);
     }
 
+    @Override
+    @Cacheable(value = StaticConfig.CACHE_USER_VALUE, key=StaticConfig.CACHE_USER_LIST_KEY,sync=true)
+    public List<TUserOdsCore> findCoreAll() {
+        return tUserOdsCoreDao.selectByExample(null);
+    }
+    @Override
+    @Caching(evict= {
+            @CacheEvict (value=StaticConfig.CACHE_USER_VALUE,key ="#user.id" ),
+            @CacheEvict (value=StaticConfig.CACHE_USER_VALUE,key =StaticConfig.CACHE_USER_LIST_KEY )
+    })
+    public void updateCoreUser(TUserOdsCore user) {
+        tUserOdsCoreDao.updateByPrimaryKey(user);
+    }
 }

@@ -1,5 +1,6 @@
 package com.boot.bootlanuch.entity.core;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;

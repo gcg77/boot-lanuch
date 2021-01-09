@@ -1,5 +1,6 @@
 package com.boot.bootlanuch;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class RedisTest{
     @Resource
     private RedisTemplate<String,String> redisTemplate;
@@ -17,6 +19,6 @@ public class RedisTest{
     @Test
     public void set(){
         redisTemplate.opsForValue().set("myKey","myValue");
-        System.out.println(redisTemplate.opsForValue().get("myKey"));
+        log.info(redisTemplate.opsForValue().get("myKey"));
     }
 }

@@ -60,7 +60,6 @@ public interface UserService {
      * @param user
      */
     public void addCoreAndMasterUser(TUserOdsCore user);
-
     /**
      * 用户登录
      * @param username
@@ -80,4 +79,14 @@ public interface UserService {
      * @return
      */
     public TUserOdsCore findCoreUser(Integer id);
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    public List<TUserOdsCore> findCoreAll();
+    /**
+     * 更新core用户信息
+     * @param user
+     */
+    public void updateCoreUser(TUserOdsCore user);
 }

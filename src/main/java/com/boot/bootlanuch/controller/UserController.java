@@ -76,7 +76,6 @@ public class UserController {
         userService.addCoreUser(user);
         return RestResponse.success().put("data", user);
     }
-
     @ApiOperation(value = "向core和master库添加用戶")
     @PostMapping("/userCoreAndMaster")
     public RestResponse addCoreAndMasterUser(@RequestBody TUserOdsCore user) {
@@ -96,5 +95,17 @@ public class UserController {
     public RestResponse findCoreUser(@PathVariable("id") Integer id) {
         TUserOdsCore coreUser = userService.findCoreUser(id);
         return RestResponse.success().put("data", coreUser);
+    }
+    @ApiOperation(value = "查询所有用户")
+    @GetMapping("/coreall")
+    public RestResponse findCoreAll() {
+        List<TUserOdsCore> coreUser = userService.findCoreAll();
+        return RestResponse.success().put("data", coreUser);
+    }
+    @ApiOperation(value = "更新用户")
+    @PutMapping("/userCore")
+    public RestResponse updateCoreUser(@Valid @RequestBody TUserOdsCore user) {
+        userService.updateCoreUser(user);
+        return RestResponse.success().put("data", user);
     }
 }

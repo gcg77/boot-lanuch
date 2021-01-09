@@ -39,6 +39,14 @@ spring:
     job-store-type: jdbc
     jdbc:
       initialize-schema: never
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true #缓存null防止缓存穿透
+      use-key-prefix: true #是否使用缓存前缀
+      key-prefix: boot-lanuch #缓存前缀
+      #time-to-live: 3600 #缓存到期时间，默认不主动删除永远不到期
+
   redis:
     database: 0 #数据库索引默认为0
     host: 121.36.104.193 #服务器地址
@@ -50,3 +58,10 @@ spring:
         max-wait: -1 #连接池中最大阻塞等地啊时间
         max-idle: 8 #连接池中最大空闲连接数
         min-idle: 0 #连接池中最小空闲连接数
+#自定义缓存失效时间配置user(缓存名字): 10(时间：秒)
+caching:
+  ttlmap:
+    user: 10
+    xxx: 20
+    yyy: 50
+    people: 20

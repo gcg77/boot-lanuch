@@ -15,6 +15,6 @@ public class CustomerHandlerConfig implements WebMvcConfigurer {
     private CustomerHandler customerHandler;
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(customerHandler).addPathPatterns("/*");
+        registry.addInterceptor(customerHandler).addPathPatterns("/**");
     }
 }

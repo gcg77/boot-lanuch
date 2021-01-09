@@ -16,7 +16,7 @@ public class FilterRegistration {
         FilterRegistrationBean register = new FilterRegistrationBean();
         register.setFilter(new CustomFilter());
         register.setName("customFilter");
-        register.addUrlPatterns("/*");
+        register.addUrlPatterns("/**");
         register.setOrder(1);
         return register;
     }
