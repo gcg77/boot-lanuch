@@ -15,7 +15,7 @@ import static java.lang.Thread.sleep;
 @Component
 @Slf4j
 public class ScheduledJobs {
-    public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    /*public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Scheduled(fixedDelay=2000000)
     public void fixedDelayJob() throws InterruptedException{
         log.info("定时任务开始fixedDelay"+sdf.format(new Date()));
@@ -39,5 +39,5 @@ public class ScheduledJobs {
         sleep(1000);
         long endTime=System.currentTimeMillis();
         log.info("定时任务cron消耗时间："+(endTime-startTime)+"毫秒");
-    }
+    }*/
 }

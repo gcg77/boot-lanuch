@@ -34,6 +34,8 @@ coredb:
   minPoolSize: 3
   maxPoolSize: 10
   testQuery: SELECT 1 FROM DUAL
+web:
+  upload-path: D:/upload
 spring:
   quartz:
     job-store-type: jdbc
@@ -58,6 +60,9 @@ spring:
         max-wait: -1 #连接池中最大阻塞等地啊时间
         max-idle: 8 #连接池中最大空闲连接数
         min-idle: 0 #连接池中最小空闲连接数
+  web:
+    resources:
+      static-locations: classpath:/METE-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 #自定义缓存失效时间配置user(缓存名字): 10(时间：秒)
 caching:
   ttlmap:

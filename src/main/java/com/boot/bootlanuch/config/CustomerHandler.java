@@ -22,18 +22,33 @@ import java.text.SimpleDateFormat;
 public class CustomerHandler implements HandlerInterceptor {
     @Resource
     private UserService userService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("请求前调用");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         request.setCharacterEncoding("utf-8");
         String url = request.getRequestURI().toString();
-        if (url.contains(StaticConfig.EXCLUDE_URL_LOGIN)||url.contains(StaticConfig.EXCLUDE_URL_TEM)) {
+        System.out.println("URL:" + url);
+        //不需要过滤的url
+        String[] urls = {".js", ".css", ".ico", ".jpg", ".png", ".html"};
+        boolean flag = false;
+        for (String str : urls) {
+            if (url.indexOf(str) != -1) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            return true;
+        }
+        if (url.contains(StaticConfig.EXCLUDE_URL_LOGIN) || url.contains(StaticConfig.EXCLUDE_URL_TEM)
+                || url.contains(StaticConfig.EXCLUDE_FILE_UPLOAD)) {
             return true;
         }
         String userid = request.getHeader("userid");
         String token = request.getHeader("token");
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             throw new BusinessException("token不能为空");
         }
         UserToken userToken = userService.userToken(token);
