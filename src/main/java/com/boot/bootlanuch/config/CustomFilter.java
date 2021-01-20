@@ -1,22 +1,10 @@
 package com.boot.bootlanuch.config;
 
-import com.boot.bootlanuch.dao.master.UserTokenDao;
-import com.boot.bootlanuch.entity.master.UserToken;
-import com.boot.bootlanuch.entity.master.UserTokenExample;
-import com.boot.bootlanuch.exception.BusinessException;
-import com.boot.bootlanuch.service.UserService;
-import com.boot.bootlanuch.utils.SpringContextUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Controller;
 
-import javax.annotation.Resource;
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author gcg

@@ -63,6 +63,26 @@ spring:
   web:
     resources:
       static-locations: classpath:/METE-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+  #mail配置
+  mail:
+    host: smtp.qq.com #发送邮件服务器
+    username: 759672969@qq.com #QQ邮箱
+    password: tfvumkjylrjibcbb #客户端授权码
+    protocol: smtp #发送邮件协议
+    properties.email.smpt.auth: true
+    properties.email.stmp.port: 456 #端口号465或587
+    properties.email.display.sendmail: javen #可以任意
+    properties.email.display.sendname: Spring Boot Name #可以任意
+    properties.email.stmp.starttls.enable: true
+    properties.email.stmp.starttls.required: true
+    properties.email.stmp.ssl.enable: true
+    default-encoding: UTF-8
+  #mail模板
+  freemarker:
+    cache: false #缓存配置，开发阶段应该配置为false，因为经常会改
+    suffix: .html #模板文件后缀名
+    charset: UTF-8 #文件编码
+    template-loader-path: classpath:/templates/
 #自定义缓存失效时间配置user(缓存名字): 10(时间：秒)
 caching:
   ttlmap:
@@ -74,6 +94,5 @@ caching:
 minio:
   endpoint: 121.36.104.193
   port: 9000
-  assessKey: minioadmin
+  accessKey: minioadmin
   secretKey: minioadmin
-
