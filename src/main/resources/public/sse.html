@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //判断是否支持SSE
+    if ('EventSource' in window) {
+//初始化SSE
+        var url = "http:localhost:1113/boot-lanuch/sse/push";
+        var source = new EventSource(url);
+//开启时调用
+        source.onopen = (event) => {
+
+            console.log("开启SSE");
+
+        }
+//监听message事件
+        source.onmessage = (event) => {
+
+            var data = event.data;
+
+            $("body").append($("<p>").text(data));
+
+        }
+//监听like事件
+        source.addEventListener('like', function (event) {
+
+            var data = event.data;
+
+            $("body").append($("<p>").text(data));
+        }, false);
+//发生异常时调用
+        source.onerror = (event) => {
+
+            console.log(event);
+        }
+    }
+</script>
+</body>
+</html>

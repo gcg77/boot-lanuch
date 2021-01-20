@@ -219,9 +219,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
+       <!-- minio-->
         <dependency>
-            <groupId>com.jvm123</groupId>
-            <artifactId>minio-spring-boot-starter</artifactId>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>7.1.0</version>
         </dependency>
     </dependencies>
     <build>

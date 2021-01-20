@@ -70,3 +70,10 @@ caching:
     xxx: 20
     yyy: 50
     people: 20
+#minio文件服务器
+minio:
+  endpoint: 121.36.104.193
+  port: 9000
+  assessKey: minioadmin
+  secretKey: minioadmin
+
