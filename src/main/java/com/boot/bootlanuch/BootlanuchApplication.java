@@ -8,7 +8,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -16,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-@ImportResource(locations="classpath:beans.xml")
+@ImportResource(locations = "classpath:beans.xml")
 @ComponentScan("com.boot.bootlanuch.*")
 @MapperScan("com.boot.bootlanuch.dao")
 @ServletComponentScan

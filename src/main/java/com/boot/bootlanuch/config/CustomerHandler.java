@@ -43,7 +43,8 @@ public class CustomerHandler implements HandlerInterceptor {
             return true;
         }
         if (url.contains(StaticConfig.EXCLUDE_URL_LOGIN) || url.contains(StaticConfig.EXCLUDE_URL_TEM)
-                || url.contains(StaticConfig.EXCLUDE_FILE_UPLOAD)) {
+                || url.contains(StaticConfig.EXCLUDE_FILE_UPLOAD)
+                || url.contains(StaticConfig.EXCLUDE_ACTUATOR)) {
             return true;
         }
         String userid = request.getHeader("userid");

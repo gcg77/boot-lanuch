@@ -96,3 +96,18 @@ minio:
   port: 9000
   accessKey: minioadmin
   secretKey: minioadmin
+#Actuator监控
+management:
+  endpoint:
+    health:
+      show-components: always
+    shutdown:
+      enabled: true
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+info:
+  app-name: boot-lanuch
+  description: Spring Boot 学习项目
+
